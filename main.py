@@ -1,15 +1,15 @@
 import turtle
-
-array = [1,2,3,4,5,6,7,8,9,10]
+from Node import Node
 
 t = turtle.Turtle()
 t.speed(1)
-for i in range(len(array)):
-    
-    t.right(100)
-    t.forward(100)
-    t.write(array[i])
-    t.right(100)
-    t.forward(100)
+
+node = Node(1)
+node.insert(2)
+node.insert(-1)
+
+print(node.left.data)
+print(node.data)
+print(node.right.data)
 
 t.getscreen()._root.mainloop()  # <-- run the Tkinter main loop
