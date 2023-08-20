@@ -21,12 +21,12 @@ class Node:
                     self.right.insert(value)
 
     def labels(self, title,x,y):
-        self.turtle.hideturtle()
+        self.turtle.setheading(0)
         self.turtle.penup()
         self.turtle.goto(x,y)
         self.turtle.write(title,font=("arial",12,"bold"))
         self.turtle.goto(x,y-20)
-        self.turtle.left(90)
+        
 
     def inOrderPrint(self,node):
         if node is None:
@@ -37,26 +37,44 @@ class Node:
                 self.turtle.write(node.data, font=("arial",12,"bold"))
                 self.turtle.forward(30)
             self.inOrderPrint(node.right)
+
+    def preOrderPrint(self,node):
+        if node is None:
+            return
+        else:
+            if node:
+                self.turtle.write(node.data, font=("arial",12,"bold"))
+                self.turtle.forward(30)
+            self.preOrderPrint(node.left)
+            self.preOrderPrint(node.right)
+    
+    def posOrderPrint(self,node):
+        if node is None:
+            return
+        else:
+            self.posOrderPrint(node.left)
+            self.posOrderPrint(node.right)
+            if node:
+                self.turtle.write(node.data, font=("arial",12,"bold"))
+                self.turtle.forward(30)
+    
     
     def drawTree(self,length, node):
-            if(length<10):
-                return
-            else:
-                if node.data:
-                    self.turtle.forward(length)
-                    self.turtle.color("red")
-                    self.turtle.write(node.data, font=("arial",12,"bold"))
-                    self.turtle.color("black")
-                    self.turtle.left(30)
-                    if node.right:
-                        self.drawTree(3*length/4,node.right)
-                    self.turtle.right(60)
-                    if node.left:
-                        self.drawTree(3*length/4,node.left)
-                    self.turtle.left(30)
-                    self.turtle.backward(length)
-                else:
-                    return 
+        if node.data:
+            self.turtle.forward(length)
+            self.turtle.color("red")
+            self.turtle.write(node.data, font=("arial",12,"bold"))
+            self.turtle.color("black")
+            self.turtle.left(30)
+            if node.right:
+                self.drawTree(3*length/4,node.right)
+            self.turtle.right(60)
+            if node.left:
+                self.drawTree(3*length/4,node.left)
+            self.turtle.left(30)
+            self.turtle.backward(length)
+        else:
+            return 
 
             
 
